@@ -12,7 +12,7 @@ function App(props) {
 
   function addPlayer(playerName) {
 
-    if (players.length == MAXPLAYERS) {
+    if (players.length === MAXPLAYERS) {
       alert("there are too many players");
     }
     else if (playerAlreadyExist(playerName)) {
@@ -24,14 +24,14 @@ function App(props) {
   }
 
   function removePlayer(playerName) {
-    var newPlayersList = players.filter((player) => player.name != playerName);
+    var newPlayersList = players.filter((player) => player.name !== playerName);
     setPlayers([...newPlayersList]);
   }
 
   function playerAlreadyExist(playerName){
     var i;
     for (i=0; i < players.length; i++) {
-      if (playerName == players[i].name){
+      if (playerName === players[i].name){
         return true;
       }
     }
@@ -40,8 +40,8 @@ function App(props) {
 
   function switchTeams(playerName) {
     var newPlayersList = players.map(player =>{
-      if (player.name == playerName) {
-        if (player.team == "Left") {
+      if (player.name === playerName) {
+        if (player.team === "Left") {
           player.team = "Right";
         } else {
           player.team = "Left"
@@ -57,7 +57,7 @@ function App(props) {
 
   function assignTeam(playerName, newTeam) {
     var newPlayersList = players.map(player =>{
-      if (player.name == playerName) {
+      if (player.name === playerName) {
         player.team = newTeam;
         player.role = null;
         return player;
@@ -77,7 +77,7 @@ function App(props) {
 
     scuffleHelper(playerList);
 
-    if (playerList.length == 10) {
+    if (playerList.length === 10) {
       var j;
       for (j = 0; j < PLAYERSPERTEAM; j++) {
         playerList[j].team = "Left";
@@ -104,7 +104,7 @@ function App(props) {
   }
 
   function randomizeRoles(leftTeam, rightTeam) {
-    if (leftTeam.length != PLAYERSPERTEAM || rightTeam.length != PLAYERSPERTEAM){
+    if (leftTeam.length !== PLAYERSPERTEAM || rightTeam.length !== PLAYERSPERTEAM){
       alert("teams need to be 5 person each");
       return;
     }
@@ -125,7 +125,7 @@ function App(props) {
   }
 
   var unassignedPlayers = players
-  .filter((player) => player.team == null)
+  .filter((player) => player.team === null)
   .map(player => (
     <Player
       key={player.name}
@@ -136,7 +136,7 @@ function App(props) {
   ));
 
   var leftTeam = players
-  .filter((player) => player.team == "Left")
+  .filter((player) => player.team === "Left")
   .map(player => (
     <Player
       key={player.name}
@@ -150,7 +150,7 @@ function App(props) {
   
 
   var rightTeam = players
-  .filter((player) => player.team == "Right")
+  .filter((player) => player.team === "Right")
   .map(player => (
     <Player
       key={player.name}
@@ -183,7 +183,7 @@ function App(props) {
     <button
       type="button"
       onClick ={() => {
-        randomizeRoles(players.filter((player) => player.team == "Right"), players.filter((player) => player.team == "Left"));
+        randomizeRoles(players.filter((player) => player.team === "Right"), players.filter((player) => player.team === "Left"));
       }}>
       Randomize Roles 
     </button>
